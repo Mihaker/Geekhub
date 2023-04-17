@@ -1,1 +1,24 @@
-<h1>Hello</h1>
+
+<h1>All posts</h1>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <% @posts.each do |post| %>
+
+
+
+      <div class="col">
+        <div class="card">
+          <img src="https://images.unian.net/photos/2020_04/thumb_files/800_0_1587136485-9161.jpg?0.9275490804927877" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= post.name %></h5>
+                <p class="card-text"><%= post.title %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <%= link_to 'Переглянути', post, class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                  <small class="text-body-secondary"><%= post.created_at %></small>
+                </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
