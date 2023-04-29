@@ -1,0 +1,31 @@
+<div class="container-lg">
+  <%= render 'shared/errors', object: @post %> 
+
+  <%= form_with model: @post, data: {turbo: false } do |f| %>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm"><%= f.label :name  %></span> 
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm"><%= f.label :content %></span>
+      <%= f.text_field :content, class: "form-control"%>
+    </div>
+
+    <div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-sm"><%= f.label :title %></span>
+    <%= f.text_field :title, class: "form-control"%>
+    </div>
+    
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm"><%= f.label :image  %></span> 
+      <%= f.text_field :image, class: 'form' %>
+      <%= f.submit "Опублікувати", class: "btn btn-secondary", id: "button-addon2" %>
+    </div>
+    <%= f.label :author_id %>
+    <%= f.collection_select :author_id, Author.all, :id, :first_name %>
+  
+
+  <% end %>
+  </div>
