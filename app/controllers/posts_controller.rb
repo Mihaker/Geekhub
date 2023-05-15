@@ -36,13 +36,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.all
-
-    @comments = if params[:filter] == "unpublished"
-                  @comments.where(status: "unpublished")
-    else
-      @comments.where(status: "published")
-                end
-
+    @comments = @comments.where(status: params[:status]) if params[:status].present?
   end
 
   def destroy
@@ -52,18 +46,6 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  def publish_comment
-    @post = Post.find(params[:id])
-    @comment = @post.comments.find(params[:comment_id])
-
-    if @comment.update(status: 'published')
-      flash[:success] = "Коментар опубліковано."
-    else
-      flash[:error] = "Error publishing comment."
-    end
-
-    redirect_to @post
-  end
   private
 
   def post_params

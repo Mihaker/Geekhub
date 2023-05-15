@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
   root 'posts#index'
 
-  resources :posts do 
-    resources :comments
-  end
+  resources :sessions, only: %i[new create destroy]
+  resources :authors, only: %i[new create]
 
   resources :posts do
-    member do
-      patch 'publish_comment/:comment_id', action: :publish_comment, as: 'publish_comment'
+    resources :comments do
+      member do
+        patch 'publish'
+      end
     end
   end
-
-
 end

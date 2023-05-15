@@ -1,8 +1,27 @@
-<div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container">
-        <a href="http://localhost:3000/" class="navbar-brand d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-          <strong>GoHome</strong>    <%= link_to 'Поділись своєю історією', new_post_path, class: "btn btn-outline-secondary" %> 
-        </a>
-      </div>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary rounded navbar-secondary-emphasis bg-secondary-emphasis shadow-lg p-3 mb-5 bg-body-tertiary rounded " aria-label="Thirteenth navbar example">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+            <a class="navbar-brand col-lg-3 me-0" href="http://localhost:3000/">MiwaCoolSite</a>
+            <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+              <li class="nav-item">
+                <%= link_to 'Поділись своєю історією', new_post_path, class: "nav-link" %>
+              </li>
+            </ul>
+            <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+            <% if author_signed_in?%>
+               <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"><%= current_author.email %></a>
+              </li>
+            <% else %>
+              <%= link_to 'Увійти', new_author_path, class: 'btn btn-primary' %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
