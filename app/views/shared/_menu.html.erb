@@ -14,11 +14,15 @@
             </ul>
             <div class="d-lg-flex col-lg-3 justify-content-lg-end">
             <% if author_signed_in?%>
-               <li class="nav-item">
+               <li class="btn-group">
                 <a class="nav-link active" aria-current="page" href="#"><%= current_author.email %></a>
+                  <%= link_to 'Destroy', logout_path, class: 'btn btn-dark', data: { turbo_method: "delete" }%>
               </li>
             <% else %>
-              <%= link_to 'Увійти', new_author_path, class: 'btn btn-primary' %>
+              <div class="btn-group">
+                <%= link_to 'Зареєстурватись', new_author_path, class: 'btn btn-dark' %>
+                <%= link_to 'Увійти', login_path, class: 'btn btn-light' %>
+              </div>
             <% end %>
             </div>
           </div>

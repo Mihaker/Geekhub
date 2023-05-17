@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
   root 'posts#index'
-
-  resources :sessions, only: %i[new create destroy]
   resources :authors, only: %i[new create]
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
 
   resources :posts do
     resources :comments do
