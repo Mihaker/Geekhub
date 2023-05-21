@@ -1,0 +1,25 @@
+  <%if author_signed_in?%>
+    <div class="position-absolute ">
+      <%= form_tag(post_path(@post), method: :get) do %>
+        <%= select_tag(:status, options_for_select([['Published', 'published'], ['Unpublished', 'unpublished']])) %>
+        <%= submit_tag('Filter') %>
+  <% end %>
+    <ul class="list-group" style="width: 450px;">
+    <div class="card">
+    <% @comments.each do |comment| %>
+      <div class="card-header text-white bg-secondary mb-1 fade show">
+          <%= button_to '', post_comment_path(@post, comment),class: 'btn-close', method: :delete, data: { turbo: "false" } %>
+          <%= link_to 'edit', edit_post_comment_path(@post, comment),class: 'btn btn-sm btn-outline-secondary'%>
+          Автор: <%= comment.author.first_name %>
+        </div>
+          <div class="card-body">
+            <p class="card-text"><%= comment.body %></p>
+          </div>
+          <%= form_with(url: publish_post_comment_path(@post, comment), method: :patch) do %>
+            <%= submit_tag "Publish" %>
+          <% end %>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+ <%end%>

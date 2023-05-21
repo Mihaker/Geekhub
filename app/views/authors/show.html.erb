@@ -1,0 +1,14 @@
+<div class='container-lg'>
+  <div class="main">
+    <div class="sebar"><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzGjWkhJIPH_koMZvbVf-ty_VOU4s0d64JhYG2xT6mPyaKOc6ct3wHg_Do8fU_OPHsp2E&usqp=CAU'/></div>
+      <div class="content">
+         <p>Ім'я:</p><h4><%= @author.first_name%></h4>
+          <p>стать:</p><h4><%= @author.gender%></h4>
+          <p>Дата народження:</p><h4><%= @author.birthday%></h4>
+          <p>е-маіл:</p><h4><%= @author.email%></h4>
+      </div>
+    <div class='nav__post'>
+    </div>
+    <div class="for__buttons"><%= link_to 'edit', edit_author_path(@author)%></div>
+  </div>
+<div>
