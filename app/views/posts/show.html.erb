@@ -1,6 +1,5 @@
-
+<%= render '/comments/comment' %>
     <div class="container-lg">
-     <%= render '/comments/form' %>
       <div class="card text-center">
         <div class="card-header fs-2">
           <%= @post.name %>
@@ -12,14 +11,18 @@
             <p class="card-text"><%= @post.title %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-outline-secondary' %>
-                  <%= link_to 'Destroy', post_path(@post), class: 'btn btn-dark', data: { turbo_method: "delete" }%>
+                  <% if policy(@post).update? %>
+                    <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-outline-secondary' %>
+                  <% end %>
+                  <% if policy(@post).destroy? %>
+                    <%= link_to 'Destroy', post_path(@post), class: 'btn btn-dark', data: { turbo_method: "delete" }%>
+                  <% end %>
                 </div>
                   <small class="text-body-secondary"><%= @post.created_at %></small>
               </div>
             </div>
         </div>
     </div>
-       <%= render '/comments/new' %>
+       <%= render '/comments/form' %>
 
 </div>

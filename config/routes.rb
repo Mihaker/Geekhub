@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'posts#index'
-  resources :authors, only: %i[new create]
+  resources :authors, only: %i[new create edit update show]
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

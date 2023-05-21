@@ -1,34 +1,41 @@
 class CommentsController < ApplicationController
+  before_action :set_comment!, only: %i[destroy update edit]
+  
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create! comments_params
-    flash[:success] = 'Коментар створено'
+    @comment = @post.comments.build comments_params
+    authorize @comment
+
+    if @comment.save
+      flash[:success] = 'Коментар створено'
+    else
+      flash[:error] = 'Помилка при стовренні коментаря'
+    end
     redirect_to post_path(@post)
   end
 
-
   def destroy
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
     @comment.destroy
     redirect_to post_path(@post)
   end
 
+  def edit; end
 
-  def publish
-    @post = Post.find(params[:id])
-    @comment = @post.comments.find(params[:comment_id])
+  def update
 
-    if @comment.update(status: 'published')
-      flash[:success] = "Коментар опубліковано."
+    if @comment.update(comments_params)
+      redirect_to @post, notice: 'Коментар оновлено'
     else
-      flash[:error] = "Error publishing comment."
+      render :edit
     end
-
-    redirect_to post_path(@post)
   end
 
   private
+
+  def set_comment!
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+  end
 
   def comments_params
     params.require(:comment).permit(:body, :author_id, :status)

@@ -8,16 +8,31 @@
           <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
             <a class="navbar-brand col-lg-3 me-0" href="http://localhost:3000/">MiwaCoolSite</a>
             <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+            <% if author_signed_in?%>
               <li class="nav-item">
                 <%= link_to 'Поділись своєю історією', new_post_path, class: "nav-link" %>
               </li>
+              <% else %>
+                      <%= link_to 'Поділись своєю історією', login_path, class: "nav-link" %>
+              <% end %>
             </ul>
             <div class="d-lg-flex col-lg-3 justify-content-lg-end">
             <% if author_signed_in?%>
-               <li class="btn-group">
-                <a class="nav-link active" aria-current="page" href="#"><%= current_author.email %></a>
-                  <%= link_to 'Destroy', logout_path, class: 'btn btn-dark', data: { turbo_method: "delete" }%>
-              </li>
+              <div class="dropdown">
+                <a class="btn btn-dark dropdown-toggle"  data-bs-toggle="dropdown"">
+                <%= current_user.email%>
+                </a>
+                
+                <ul class="dropdown-menu">
+                 <li><%= link_to 'Переглянути профіль', author_path(current_user), class: 'dropdown-item'%></li>
+                <li><%= link_to 'Рудагувати профіль', edit_author_path(current_user), class: 'dropdown-item'%></li>
+
+                  <hr class="dropdown-divider">
+
+                  <li><%= link_to 'Вийти', logout_path, class: 'dropdown-item',
+                  data: { turbo_method: "delete" } %></li>
+                </ul>
+              </div>
             <% else %>
               <div class="btn-group">
                 <%= link_to 'Зареєстурватись', new_author_path, class: 'btn btn-dark' %>

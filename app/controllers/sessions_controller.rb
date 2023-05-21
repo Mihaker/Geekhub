@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:author_id)
-    @current_author = nil
+    @current_user = nil
     flash[:info] = "ви вийшли з системи"
     redirect_to root_path
   end

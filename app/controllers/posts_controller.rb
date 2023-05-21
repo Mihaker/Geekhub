@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  before_action :set_post!, only: %i[edit update show destroy]
   def create
     @post = Post.new post_params
+    authorize @post
 
     if @post.save
       flash[:success] = 'Публікацію створенно'
@@ -10,12 +12,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @post = Post.find(params[:id])
+
+    authorize @post
 
     if @post.update post_params
       flash[:success] = 'Публікацію оновленно'
@@ -34,19 +35,24 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @comments = @post.comments.all
+    @comment = @post.comments.build
+    authorize @post
     @comments = @comments.where(status: params[:status]) if params[:status].present?
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    authorize @post
     @post.destroy
     flash[:info] = 'Публікацію виделано'
     redirect_to root_path
   end
 
   private
+
+  def set_post!
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:name, :title, :content, :image, :author_id)
