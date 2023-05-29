@@ -15,7 +15,6 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-
     authorize @post
 
     if @post.update post_params
@@ -35,10 +34,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments.all
+    @comments = @post.comments.roots
     @comment = @post.comments.build
     authorize @post
-    @comments = @comments.where(status: params[:status]) if params[:status].present?
   end
 
   def destroy

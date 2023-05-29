@@ -1,0 +1,10 @@
+<% comments.each do |parent, child| %>
+  <div class='new__level'>
+    <%= parent.id %>
+    <%= parent.body %>
+     <%= render 'comments/form', parent_id: parent.id %>
+      <div class='new__level'>
+        <%= render 'comments/all_comments', comments: child %>
+      </div>
+  </div>
+<% end %>

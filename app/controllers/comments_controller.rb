@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment!, only: %i[destroy update edit]
-  
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build comments_params
@@ -22,7 +22,6 @@ class CommentsController < ApplicationController
   def edit; end
 
   def update
-
     if @comment.update(comments_params)
       redirect_to @post, notice: 'Коментар оновлено'
     else
@@ -38,6 +37,6 @@ class CommentsController < ApplicationController
   end
 
   def comments_params
-    params.require(:comment).permit(:body, :author_id, :status)
+    params.require(:comment).permit(:body, :author_id, :status, :parent_id)
   end
 end

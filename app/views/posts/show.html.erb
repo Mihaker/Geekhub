@@ -1,4 +1,3 @@
-<%= render '/comments/comment' %>
     <div class="container-lg">
       <div class="card text-center">
         <div class="card-header fs-2">
@@ -23,6 +22,8 @@
             </div>
         </div>
     </div>
-       <%= render '/comments/form' %>
+
+      <%= render '/comments/comment' %>
+      <%= render '/comments/form', parent_id: nil%>
 
 </div>
