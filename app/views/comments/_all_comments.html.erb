@@ -2,6 +2,7 @@
   <div class='new__level'>
     <%= parent.id %>
     <%= parent.body %>
+    <%= link_to 'CREATE COMMENT', new_post_comment_path(@post) %>
      <%= render 'comments/form', parent_id: parent.id %>
       <div class='new__level'>
         <%= render 'comments/all_comments', comments: child %>

@@ -1,6 +1,12 @@
 class CommentsController < ApplicationController
   before_action :set_comment!, only: %i[destroy update edit]
 
+  def new
+   Comment.new
+  end
+  
+  def edit; end
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build comments_params
@@ -19,7 +25,6 @@ class CommentsController < ApplicationController
     redirect_to post_path(@post)
   end
 
-  def edit; end
 
   def update
     if @comment.update(comments_params)
@@ -33,7 +38,7 @@ class CommentsController < ApplicationController
 
   def set_comment!
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
+    @comment = @post.comments.find(params[:comment_id])
   end
 
   def comments_params

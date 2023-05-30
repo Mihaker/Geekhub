@@ -1,3 +1,5 @@
-<div class='container-lg'>
-    <%= render 'form' %>
-</div>
+
+  <%= turbo_frame_tag 'first_turbo' do %>
+        <%= render 'form' %>
+  <% end %>
+

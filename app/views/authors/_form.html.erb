@@ -1,39 +1,29 @@
- <h1>Sign Up</h1>
+
 
  <%= render 'shared/errors', object: @author %>
  
   <%= form_for @author, data: {turbo: false }   do |f| %>
 
     
-    <div class="row g-3">
-      <div class="col-sm-6">
-        <%= f.label :first_name, class: "form-label"%>
-        <%= f.text_field :first_name, class:'form-control'%>
-      </div>
-      <div class="col-sm-6">
-        <%= f.label :last_name, class: "form-label"%>
-        <%= f.text_field :last_name, class:'form-control'%>
-      </div>
+        <div class="page__personal">
+      <h5>Імʼя:</h5>
+      <%= f.text_field :first_name, class:'form-control'%>
 
-       <div class="col-md-8">
-        <%= f.label :email, class: 'form-label' %>
+      <h5>Фамилія:</h5>
+       <%= f.text_field :last_name, class:'form-control'%>
+
+      <h5>E-mail:</h5>
         <div class="input-group has-validation">
           <span class="input-group-text">E-mail @</span>
             <%= f.text_field :email, class:'form-control'%>
         </div>
-      </div>
 
-
-    <div class="row g-3">
-      <div class="col-md-6">
-        <%= f.label :password, class: "form-label"%><br />
+      <h5>Пароль:</h5>
         <%= f.password_field :password, class:'form-control' %>
-        
-          <%= f.label :password_confirmation, class: "form-label" %><br />
-          <%= f.password_field :password_confirmation, class:'form-control' %>
-        </div>
-      </div>
       
+      <h5>Підтвердіть пароль:</h5>
+        <%= f.password_field :password_confirmation, class:'form-control' %>
+    </div>
     
     <div class="actions"><%= f.submit "Sign Up" %></div>
   <% end %>

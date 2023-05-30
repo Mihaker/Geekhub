@@ -11,46 +11,56 @@ body {
 }
 
 
-.con-register {
-     border: 1px solid rgb(0, 0, 0);
-     border-radius: 8px;
-     padding: 10px 20px;
-     max-width: 1080px;
-     margin: auto;
-}
- 
- .sebar {
-     float: left;
-     width: 200px;
-     height: 200px;
- }
- 
- .for__buttons {
-     
-     width: 200px;
-     height: 50px;
-     margin-top: -50px;
- 
- }
- 
- .content {
-     position: absolute;
-     margin-left: 250px;
-     background-color: #a39a9d;
-     width: 260px;
-     height: 260px;
-     padding-left: 50px;
- 
- }
- .nav__post {
-     background-color: #7d708f;
-     height: 260px;
-     width: 660px;
-     margin-left: 550px;
- }
+
 
  .new__level {
     padding: 15px;
     border-left: 1px solid ;
  }
+
+ .page {
+  display: flex;
+  justify-content: center;
+  height: 350px;
+}
+
+.page__avatar {
+  width: 20%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.page__avatar-image {
+  margin-top: 30px;
+  height: 180px;
+  width: 240px;
+}
+
+.page__button {
+  margin: 10px;
+  height: 35px;
+  width: 70px;
+  background-color: rgb(17, 250, 0);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  
+}
+
+.page__personal {
+  width: 20%;
+}
+
+.page__comment {
+  margin: 30px;
+  width: 60%;
+  height: 100%;
+  overflow: auto;
+}
+
+
+
 
