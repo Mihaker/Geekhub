@@ -1,11 +1,9 @@
 <% if author_signed_in?%>
+
 <%= form_with model: [ @post, @comment], data: {turbo: false } do |f| %>
   <%= f.label :author_id %>
   <%= f.collection_select :author_id, Author.all, :id, :first_name %>
-
-
-  <%= f.hidden_field :parent_id, value: parent_id if parent_id.present?%>
-    parent <%= parent_id if parent_id.present? %>
+  <%= f.hidden_field :parent_id, value: params[:comment_id] if params[:comment_id].present?%>
     <div class="container-fluid py-5">
       <div class="input-group">
         <span class="input-group-text">Напишіть свій коментар</span>
