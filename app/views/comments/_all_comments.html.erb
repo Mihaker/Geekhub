@@ -1,8 +1,16 @@
 <% comments.each do |parent, child| %>
   <div class='new__level'>
+   
    <div class="row">
     <div class="container-lg">
       <div class="card">
+        <div class="card-header">
+          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-success-emphasis"><%= parent.get_upvotes.size%></button>
+            <%= button_to 'like', like_post_comment_path(@post, parent), class:'btn  btn-success', method: :put %> 
+            <%= button_to 'Dislike', dislike_post_comment_path(@post, parent), class:'btn  btn-danger', method: :put %>
+            <button type="button" class="btn btn-danger-emphasis"><%= parent.get_downvotes.size %></button> 
+        </div>
         <div class="card-body">
           <h5 class="card-title"><%= parent.author.first_name %></h5>
           <p class="card-text"><%= parent.body %></p>
@@ -15,5 +23,6 @@
       <div class='new__level'>
         <%= render 'comments/all_comments', comments: child %>
       </div>
+    
   </div>
 <% end %>

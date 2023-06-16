@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :comments do
       member do
         patch 'publish'
+        put 'like' => 'comments#vote_up'
+        put 'dislike' => 'comments#vote_down'
       end
     end
   end

@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments.roots
+    @comments = @post.comments.order(:cached_votes_up => :desc)
     @comment = @post.comments.build
     authorize @post
   end

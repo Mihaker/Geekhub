@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment!, only: %i[destroy update edit]
+  before_action :set_comment!, only: %i[destroy update edit vote_down vote_up]
 
   def new
     @post = Post.find(params[:post_id])
@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build comments_params
     authorize @comment
-    
+
     if @comment.save
       flash[:success] = 'Коментар створено'
     else
@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
     redirect_to post_path(@post)
   end
 
-
   def update
     if @comment.update(comments_params)
       redirect_to @post, notice: 'Коментар оновлено'
@@ -35,11 +34,21 @@ class CommentsController < ApplicationController
     end
   end
 
+  def vote_up
+    @comment.liked_by current_user
+    redirect_to @post
+  end
+
+  def vote_down
+    @comment.downvote_from current_user
+    redirect_to @post
+  end
+
   private
 
   def set_comment!
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:comment_id])
+    @comment = @post.comments.find(params[:id])
   end
 
   def comments_params

@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :post, counter_cache: true
   belongs_to :author
   has_ancestry
+  acts_as_votable
 
   validates :body, presence: true, length: { minimum: 2 }
 end

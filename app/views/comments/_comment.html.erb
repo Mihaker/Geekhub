@@ -1,5 +1,3 @@
-<% @comments.each do |comment| %>
-   <div class='my-1'>
+<% @comments.roots.each do |comment| %>
       <%= render 'comments/all_comments', comments: comment.subtree.arrange %>
-   </div>
 <% end %>
